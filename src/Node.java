@@ -7,15 +7,7 @@ public class Node {
         this.parent = parent;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public Product getParent() {
         return parent;
-    }
-
-    public void setParent(Product parent) {
-        this.parent = parent;
     }
 }

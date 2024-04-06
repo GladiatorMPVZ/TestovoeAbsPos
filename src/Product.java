@@ -1,14 +1,14 @@
 public class Product {
-    private String name;
-    private Tree ingredients = Tree.getInstance();
+    private String productTitle;
+    private Tree ingredientTree = Tree.getInstance();
 
-    public Product(String name) {
-        this.name = name;
+    public Product(String productTitle) {
+        this.productTitle = productTitle;
     }
 
     public boolean addProduct(Product product) {
         Node node = new Node(product, this);
-        ingredients.getIngredients().add(node);
+        ingredientTree.getIngredients().add(node);
         if (this == product || parentCheck(product)) {
             return false;
         }
@@ -16,12 +16,11 @@ public class Product {
     }
 
     private boolean parentCheck(Product product) {
-        boolean res = false;
-        for(Node node : ingredients.getIngredients()) {
+        for(Node node : ingredientTree.getIngredients()) {
             if (node.getParent().equals(product)) {
                 return true;
             }
         }
-        return res;
+        return false;
     }
 }
