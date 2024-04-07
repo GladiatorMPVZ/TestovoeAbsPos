@@ -1,24 +1,26 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Product {
     private String productTitle;
-    private Tree ingredientTree = Tree.getInstance();
+    private static List<Node> ingredients = new ArrayList<>();
 
     public Product(String productTitle) {
         this.productTitle = productTitle;
     }
 
     public boolean addProduct(Product product) {
-        Node node = new Node(product, this);
-        ingredientTree.getIngredients().add(node);
-        if (this == product || parentCheck(product)) {
+        if (product.productTitle.isEmpty() || this == product || parentCheck(product)) {
             return false;
         }
+        Node node = new Node(product, this);
+        ingredients.add(node);
         return true;
     }
 
     private boolean parentCheck(Product product) {
-        for(Node node : ingredientTree.getIngredients()) {
+        for(Node node : ingredients) {
             if (node.getParent().equals(product)) {
                 return true;
             }
