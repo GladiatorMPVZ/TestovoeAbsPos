@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Product {
     private String productTitle;
     private Tree ingredientTree = Tree.getInstance();
@@ -22,5 +24,22 @@ public class Product {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Product product = (Product) o;
+        return Objects.equals(productTitle, product.productTitle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productTitle);
     }
 }
